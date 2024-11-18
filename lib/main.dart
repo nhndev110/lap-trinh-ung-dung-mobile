@@ -12,11 +12,11 @@ class App extends StatelessWidget {
     return MaterialApp(
       color: Colors.white,
       title: "NHN Shop",
-      initialRoute: "/shop",
+      initialRoute: "/gmail",
       routes: {
         '/': (context) => ShopPage(),
         '/cart': (context) => CartPage(),
-        '/meet': (context) => GmailPage(),
+        '/gmail': (context) => GmailPage(),
         '/shop': (context) => MyShop(),
       },
       debugShowCheckedModeBanner: false,
