@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:test1/widgets/gmail_drawer.dart';
+import 'package:test1/models/carousel_data.dart';
+import 'package:test1/services/meet_service.dart';
 
 class MeetScreen extends StatefulWidget {
   @override
@@ -13,8 +14,7 @@ class _MeetScreenState extends State<MeetScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: TopNavigation(),
-      drawer: GmailDrawer(),
+      appBar: TopNavigation(context),
       body: Container(
         padding: EdgeInsets.only(top: 18),
         child: Column(
@@ -26,40 +26,21 @@ class _MeetScreenState extends State<MeetScreen> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showModalBottomSheet(
-            context: context,
-            backgroundColor: Colors.white,
-            builder: (BuildContext context) {
-              return Container(
-                height: 200,
-                child: Center(
-                  child: Text("This is a modal"),
-                ),
-              );
-            },
-          );
-        },
-        backgroundColor: Colors.blue[50],
-        child: Icon(Icons.video_call_outlined),
-      ),
     );
   }
 
-  AppBar TopNavigation() {
+  AppBar TopNavigation(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.white,
       centerTitle: true,
-      leading: Builder(
-        builder: (context) {
-          return IconButton(
-            onPressed: () {
-              Scaffold.of(context).openDrawer();
-            },
-            icon: Icon(Icons.menu),
-          );
+      leading: IconButton(
+        onPressed: () {
+          Scaffold.of(context).openDrawer();
         },
+        icon: Icon(
+          Icons.menu,
+          color: Colors.black,
+        ),
       ),
       title: Text(
         "Họp mặt",
@@ -134,13 +115,13 @@ class _MeetScreenState extends State<MeetScreen> {
         });
       },
       children: List.generate(
-        5,
-        (index) => CarouselItem(),
+        MeetService.carousel.length,
+        (index) => CarouselItem(MeetService.carousel.elementAt(index)),
       ),
     );
   }
 
-  Widget CarouselItem() {
+  Widget CarouselItem(CarouselData carouselData) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -148,7 +129,7 @@ class _MeetScreenState extends State<MeetScreen> {
           height: 150,
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("images/meet/meet.png"),
+              image: AssetImage(carouselData.bgUrl),
               fit: BoxFit.contain,
             ),
           ),
@@ -157,7 +138,7 @@ class _MeetScreenState extends State<MeetScreen> {
           alignment: Alignment.center,
           padding: EdgeInsets.only(top: 12),
           child: Text(
-            "Cuộc họp luôn an toàn",
+            carouselData.title,
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w500,
@@ -168,7 +149,7 @@ class _MeetScreenState extends State<MeetScreen> {
           alignment: Alignment.center,
           padding: EdgeInsets.only(top: 12, right: 8, left: 8),
           child: Text(
-            "Không ai bên ngoài tổ chức của bạn có thể tham gia cuộc họp khi người tổ chức chưa mời hoặc chưa cho phép",
+            carouselData.description,
             textAlign: TextAlign.center,
           ),
         ),

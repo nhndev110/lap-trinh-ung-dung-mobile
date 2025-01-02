@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:test1/widgets/gmail_drawer.dart';
 
 class GmailScreen extends StatelessWidget {
   const GmailScreen({super.key});
@@ -8,9 +7,8 @@ class GmailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: GmailAppBar(),
+      appBar: GmailAppBar(context),
       body: GmailBody(),
-      drawer: GmailDrawer(),
       floatingActionButton: GmailFloatingButton(context),
     );
   }
@@ -27,84 +25,166 @@ class GmailScreen extends StatelessWidget {
             borderRadius: BorderRadius.circular(0),
           ),
           builder: (context) {
-            return Padding(
-              padding: const EdgeInsets.only(right: 12, left: 12, top: 8),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 12),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                          onPressed: () => Navigator.pop(context),
-                          icon: Icon(Icons.close),
-                        ),
-                        Row(
-                          children: [
-                            IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.attach_file_outlined,
-                              ),
+            return Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                    right: 12,
+                    left: 12,
+                    top: 8,
+                    bottom: 12,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(
+                        onPressed: () => Navigator.pop(context),
+                        icon: Icon(Icons.close),
+                      ),
+                      Row(
+                        children: [
+                          IconButton(
+                            onPressed: () {},
+                            icon: Icon(
+                              Icons.attach_file_outlined,
                             ),
-                            IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.send_rounded,
-                              ),
+                          ),
+                          IconButton(
+                            onPressed: () {},
+                            icon: Icon(
+                              Icons.send_rounded,
                             ),
-                            IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.more_horiz,
-                              ),
+                          ),
+                          IconButton(
+                            onPressed: () {},
+                            icon: Icon(
+                              Icons.more_horiz,
                             ),
-                          ],
-                        )
-                      ],
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.only(right: 12, left: 12),
+                  decoration: BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(
+                        color: const Color.fromARGB(255, 197, 197, 197),
+                        width: 0.5,
+                      ),
                     ),
                   ),
-                  Container(
-                    padding: EdgeInsets.only(right: 12, left: 12),
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                          color: const Color.fromARGB(255, 197, 197, 197),
-                          width: 0.5,
+                  child: Row(
+                    children: [
+                      Text(
+                        "Đến",
+                        style: TextStyle(
+                          fontSize: 16,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 16,
+                      ),
+                      Expanded(
+                        child: TextFormField(
+                          cursorColor: Colors.blue,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.keyboard_arrow_down_rounded,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.only(right: 12, left: 12),
+                  decoration: BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(
+                        color: const Color.fromARGB(255, 197, 197, 197),
+                        width: 0.5,
+                      ),
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      Text(
+                        "Từ",
+                        style: TextStyle(
+                          fontSize: 16,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 16,
+                      ),
+                      Expanded(
+                        child: TextFormField(
+                          cursorColor: Colors.blue,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.keyboard_arrow_down_rounded,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                TextFormField(
+                  decoration: InputDecoration(
+                    hintText: "Tiêu đề",
+                    contentPadding: EdgeInsets.only(
+                      left: 12,
+                      right: 12,
+                    ),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: const Color.fromARGB(255, 197, 197, 197),
+                        width: 0.5,
+                      ),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: const Color.fromARGB(255, 197, 197, 197),
+                        width: 0.5,
+                      ),
+                    ),
+                  ),
+                  cursorColor: Colors.blue,
+                ),
+                Expanded(
+                  child: TextField(
+                    maxLines: null,
+                    decoration: InputDecoration(
+                      hintText: "Soạn thư",
+                      contentPadding: EdgeInsets.only(
+                        left: 12,
+                        right: 12,
+                      ),
+                      border: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          width: 0,
+                          style: BorderStyle.none,
                         ),
                       ),
                     ),
-                    child: Row(
-                      children: [
-                        Text(
-                          "Đến",
-                          style: TextStyle(
-                            fontSize: 16,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 16,
-                        ),
-                        Expanded(
-                          child: TextFormField(
-                            cursorColor: Colors.blue,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                            ),
-                          ),
-                        ),
-                        IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.keyboard_arrow_down_rounded,
-                          ),
-                        )
-                      ],
-                    ),
+                    cursorColor: Colors.blue,
+                    keyboardType: TextInputType.multiline,
                   ),
-                ],
-              ),
+                )
+              ],
             );
           },
         );
@@ -126,21 +206,19 @@ class GmailScreen extends StatelessWidget {
     );
   }
 
-  AppBar GmailAppBar() {
+  AppBar GmailAppBar(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.grey[200],
-      leading: Builder(builder: (context) {
-        return IconButton(
-          onPressed: () {
-            Scaffold.of(context).openDrawer();
-          },
-          icon: Icon(
-            Icons.menu,
-            color: Colors.black,
-          ),
-        );
-      }),
-      title: Text("Tìm trong thư"),
+      leading: IconButton(
+        onPressed: () {
+          Scaffold.of(context).openDrawer();
+        },
+        icon: Icon(
+          Icons.menu,
+          color: Colors.black,
+        ),
+      ),
+      title: Text("Hộp thư"),
       actions: [
         Padding(
           padding: const EdgeInsets.only(right: 12),

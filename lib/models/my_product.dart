@@ -1,4 +1,4 @@
-class Myproduct {
+class MyProduct {
   int id;
   String title;
   double price;
@@ -7,29 +7,27 @@ class Myproduct {
   String image;
   late Rating rating;
 
-  Myproduct({
+  MyProduct({
     required this.id,
     required this.title,
     required this.price,
     required this.description,
     required this.category,
     required this.image,
-    // required this.rating,
+    required this.rating,
   });
 
-  factory Myproduct.fromJson(Map<String, dynamic> json) {
-    return Myproduct(
+  factory MyProduct.fromJson(Map<String, dynamic> json) {
+    return MyProduct(
       id: json['id'],
       title: json['title'],
       price: json['price'],
       description: json['description'],
       category: json['category'],
       image: json['image'],
+      rating: Rating.fromJson(json['rating']),
     );
   }
-
-  // static Myproduct fromJson(Map<String, dynamic> json) {
-  // }
 }
 
 class Rating {
@@ -40,4 +38,11 @@ class Rating {
     required this.rate,
     required this.count,
   });
+
+  factory Rating.fromJson(Map<String, dynamic> rating) {
+    return Rating(
+      rate: rating['rate'],
+      count: rating['count'],
+    );
+  }
 }
